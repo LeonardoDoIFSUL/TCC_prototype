@@ -1,0 +1,24 @@
+{
+  "name": "tcc_prototipo",
+  "version": "1.0.0",
+  "description": "Primeira versão do TCC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leonardo Mendes",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "formidable": "^2.1.1",
+    "handlebars": "^4.7.7",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.2.0",
+    "passport": "^0.6.0",
+    "sequelize": "^6.31.0"
+  }
+}
