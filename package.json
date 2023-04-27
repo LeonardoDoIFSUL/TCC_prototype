@@ -9,8 +9,12 @@
   "author": "Leonardo Mendes",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.3.5",
     "bcrypt": "^5.1.0",
+    "bootstrap": "^5.2.3",
     "crypto": "^1.0.1",
+    "draft-js": "^0.11.7",
+    "draft.js": "^0.2.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
@@ -19,6 +23,9 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.2.0",
     "passport": "^0.6.0",
-    "sequelize": "^6.31.0"
+    "react": "~18.2.0",
+    "react-draft-wysiwyg": "^1.15.0",
+    "sequelize": "^6.31.0",
+    "tinymce": "^6.4.1"
   }
 }
