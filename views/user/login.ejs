@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%- include('../partials/headers'); %>
+</head>
+<body>
+    <%- include('../partials/navbar'); %>
+    <main>
+        <form enctype="multipart/form-data" action="/login" method="POST">
+            <input type="email" name="email" id="form-camp">
+            <input type="password" name="passwd" id="form-camp">
+            <button type="submit" id="form-button">Enviar</button>
+        </form>
+    </main>
+</body>
+</html>

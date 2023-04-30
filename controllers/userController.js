@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const formidable = require('formidable')
 
-const textModel = require('../models/user')
+const userModel = require('../models/user')
 const { throws } = require('assert')
 
 
@@ -18,5 +18,17 @@ module.exports = {
         .catch((e)=>{
             throws(e)
         })
+    },
+    create: function(req,res){
+        var name 
+        if(req.session.username)
+        name = req.session.username
+        else 
+        name = null
+        res.render('/register',{user: name})
+    },
+    newCreate: async function(){
+        userModel.create(req.body['name'],req.body['email'],req.body['passwd'],req.body['choose'],req.body['image'])
+        res.redirect('/login')
     }
 }

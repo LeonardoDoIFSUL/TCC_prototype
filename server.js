@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const port = 8080
 
-app.use(express.static('../public'))
+app.use(express.static('public'))
 app.set('view engine','ejs')
 
 app.use(session({
@@ -12,11 +12,33 @@ app.use(session({
     resave: false
 }))
 
-const textController = require('./src/controllers/textController')
-app.get('/text', textController.create)
+app.get('/', function(req,res){
+    let name
+    if(req.params.name){
+        name = req.params.name
+    } else {
+        name = null
+    } 
+    res.render('home.ejs',{user: name})
+})
 
-const userController = require('./src/controllers/userController')
-app.get('/user', userController) //Aqui tem que adicionar um parametro como create, edit, show, etc...
+app.get('/login', function(req,res){
+    res.render('./user/login.ejs')
+})
+
+app.get('/register', function(req,res){
+    res.render('./user/register.ejs')
+})
+
+const userController = require('./controllers/userController')
+app.post('/register', userController.create)//Aqui tem que adicionar um parametro como create, edit, show, etc...
+
+app.get('/editor', function(req,res){
+    res.render('editor.ejs')
+})
+
+const textController = require('./controllers/textController')
+app.get('/text', textController.create)
 
 app.listen(port, function(){
     console.log(`Funcinando na porta ${port}`)
