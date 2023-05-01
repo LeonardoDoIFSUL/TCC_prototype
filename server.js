@@ -3,6 +3,9 @@ const express = require('express')
 const app = express()
 const port = 8080
 
+const userController = require('./controllers/userController')
+const textController = require('./controllers/textController')
+
 app.use(express.static('public'))
 app.set('view engine','ejs')
 
@@ -26,18 +29,13 @@ app.get('/login', function(req,res){
     res.render('./user/login.ejs')
 })
 
-app.get('/register', function(req,res){
-    res.render('./user/register.ejs')
-})
-
-const userController = require('./controllers/userController')
-app.post('/register', userController.create)//Aqui tem que adicionar um parametro como create, edit, show, etc...
+app.get('/register', userController.create)
+app.post('/register', userController.storeUser)//Aqui tem que adicionar um parametro como create, edit, show, etc...
 
 app.get('/editor', function(req,res){
     res.render('editor.ejs')
 })
 
-const textController = require('./controllers/textController')
 app.get('/text', textController.create)
 
 app.listen(port, function(){

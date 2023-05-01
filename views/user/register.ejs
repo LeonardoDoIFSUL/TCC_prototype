@@ -11,9 +11,10 @@
     <%- include('../partials/navbar'); %>
     <main>
         <form enctype="multipart/form-data" action="/register" method="POST">
-            <input type="text" name="name" id="form-camp">
-            <input type="email" name="email" id="form-camp">
-            <input type="password" name="passwd" id="form-camp">
+            <!-- Todos os campos são obrigatórios, tem que adaptar isso para middleware-->
+            <input type="text" name="name" id="form-camp" required>
+            <input type="email" name="email" id="form-camp" required>
+            <input type="password" name="passwd" id="form-camp" required>
            
                 <input type="radio" name="choose" id="form-camp" value="professor">
                 <label>Professor</label>
@@ -21,7 +22,7 @@
                 <input type="radio" name="choose" id="form-camp" value="studant">
                 <label>Estudante</label>
 
-            <input type="file" name="image" id="form-camp">
+            <input type="file" name="image" id="form-camp" required>
             <button type="submit" id="form-button">Enviar</button>
         </form>
     </main>
