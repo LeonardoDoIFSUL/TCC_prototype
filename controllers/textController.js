@@ -14,13 +14,16 @@ module.exports = {
     index: async function(req,res){
         textModel.searchAll() //Criar essa função para buscar todos dentro da model
         .then(result=>{
-            res.render('../views/editor/list',{dadosText: result}) //Envia os dados da model chamando a view "list"
+            res.render('../views/list',{dadosText: result}) //Envia os dados da model chamando a view "list"
         })
         .catch((e)=>{
             throws(e)
         })
     },
+    write: ()=>{
+        //Fazer inclusões para enviar o conteudo para a model
+    },
     create: () =>{
-
+        //Deve mandar os dados de escrita para a model
     }
 }

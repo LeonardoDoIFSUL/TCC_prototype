@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Iniciar redação</title>
+    <%- include('./partials/headers') %>
+</head>
+
+<body>
+    <%- include('./partials/navbar'); %>
+        <main>
+            
+                <form enctype="multipart/form-data" action="/text" method="post">
+                    <label for="title">Titulo:</label>
+                    <input type="text" name="title" id="">
+                    <label for="test">Escola de Teste:</label>
+                    <select name="test" id="">
+                        <option value="LIVRE" selected>LIVRE</option>
+                        <option value="ENEM">ENEM</option>
+                        <option value="UFRGS">UFRGS</option>
+                        <option value="USP">USP</option>
+                        <option value="UFRJ">UFRJ</option>
+                        <option value="ESA">ESA</option>
+                        <option value="ESPCEX">EsPCEx</option>
+                        <option value="DEFERAL">Policia Federal</option>
+                    </select>
+                    <label for="assunt">Tópico:</label>
+                    <input type="text" name="assunt" id="">
+                    <!-- Provavelmente vai ter que separar o texto do form para iniciar-->
+                    <textarea name="redation" id="myTextarea"></textarea>
+                    <button type="submit">Terminar redação e enviar</button>
+                </form>
+           
+        </main>
+</body>
+
+</html>
