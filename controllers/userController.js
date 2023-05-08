@@ -10,29 +10,43 @@ const { throws } = require('assert')
 
 module.exports = {
 
-    index: async function (req, res) {
-        textModel.searchAll() //Criar essa função para buscar todos dentro da model
-            .then(result => {
-                res.render('/list', { dadosText: result }) //Chama a view enviando os dados retornados pela model
-            })
-            .catch((e) => {
-                throws(e)
-            })
+    login: function(req, res) {
+        var name;
+        if(req.session.username)	
+            name = req.session.username;
+        else 
+            name = null;
+        var message;
+        if (req.session.erro) {
+            message = req.session.mensagem;
+            req.session.erro=false;
+        }
+        else{
+            message = "Realizar Login";
+        }
+        res.render('./user/login.ejs', {message: message, user: name});
     },
-    /* Verificar função disso ou tirar
 
-    create: function (req, res) {
-        var name
-        if (req.session.username)
-            name = req.session.username
-        else
-            name = null
-        res.render('register', { user: name }) //Verificar se caminho esta correto
-    }, 
-    */
+    realizeLogin: async function(req, res) {
+        let form = new formidable.IncomingForm()
+        form.parse(req, (err,fields)=>{
+            if(err) throw err
+            userModel.login(fields['email'],fields['passwd'])
+            .then(result=>{
+                if(result){
+                    req.session.loggedin = true
+                    req.session.username = fields['email']
+                res.redirect('/')
+            } else {
+                res.redirect('/login')
+            }
+        })
+        })},
+
     storeUser: function (req, res) {
         let form = new formidable.IncomingForm()
         form.parse(req, (err, fields, files) => {
+            if (err) throw err
             let oldpath = files.image.filepath
             let hash = crypto.createHash('md5').update(Date.now().toString()).digest('hex')
             let nameImg = hash + "." + files.image.mimetype.split('/')[1]
@@ -44,11 +58,18 @@ module.exports = {
         })
         res.redirect('/login')
     },
-    edit: function(){
+
+    perfil: async function(req,res){
+        res.render('./user/perfil.ejs')
+    },
+
+    edit: function () {
         // Quase igual ao "storeUser" mas é diferente
     },
-    logout: function(){
-        req.session.destroy()
-        res.redirect('/login')
+    logout: function (req, res) {
+        req.session.destroy(function (err) {
+            if (err) console.log("DEU ERRO NO LOGOUT", err)
+        })
+        res.redirect('/login');
     }
 }

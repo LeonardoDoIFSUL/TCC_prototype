@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Home</title>
+    <%- include('./partials/headers') %>
+</head>
+
+<body>
+    <%- include('./partials/navbar'); %>
+        
+            <h1>Tutoriais</h1>
+        
+        <main id="work-area">
+            <nav>
+                <a href tutor="/step01">I - Começando do zero</a> |
+                <a href tutor="/step02">II - Pontuações no ENEM</a> |
+                <a href tutor="/step03">III - Formas de avaliação e Modelos</a> |
+            </nav>
+            <br>
+            <section id="content">
+                <i>Selecione o tutorial desejado no menu acima!</i>
+            </section>
+        </main>
+        <script>
+            document.querySelectorAll('[tutor]').forEach((link) => {
+
+                const content = document.getElementById('content')
+
+                link.onclick = (e) => { //Adicionei uma propriedade ao Objeto "link" (essa propriedade é do document)
+                    e.preventDefault() //Aqui eu não deixo ele fazer as funções normais (que seria ir para o arquivo de link)
+                    fetch(link.getAttribute('tutor')) //Pego o elemento "tutor" que esta dentro do "link" da tag "a" (Chamada AJAX)
+                        .then(arquive => arquive.text()) //Aqui ele retorna o arquivo site.html em uma Promise
+                        .then(text => content.innerHTML = text)
+                        .catch(err => console.log(err))
+                }
+            })
+        </script>
+</body>
+
+</html>

@@ -12,16 +12,21 @@
     <main>
         <form enctype="multipart/form-data" action="/register" method="POST">
             <!-- Todos os campos são obrigatórios, tem que adaptar isso para middleware-->
+            <label for="name">Nome:</label>
             <input type="text" name="name" id="form-camp" required>
+            <label for="email">E-mail:</label>
             <input type="email" name="email" id="form-camp" required>
-            <input type="password" name="passwd" id="form-camp" required>
-           
+            <label for="passwd">Senha:</label>
+            <input type="password" name="passwd" id="form-camp" required><br>
+            <label for="image">Função:</label>
+                <fieldset>
                 <input type="radio" name="role" id="form-camp" value="1"> <!-- Professor = 1 no campo role-->
                 <label>Professor</label>
             
                 <input type="radio" name="role" id="form-camp" value="0"> <!-- Aluno = 0 no campo role-->
                 <label>Estudante</label>
-
+                </fieldset>
+            <label for="image">Foto de Perfil:</label>
             <input type="file" name="image" id="form-camp" required>
             <button type="submit" id="form-button">Enviar</button>
         </form>

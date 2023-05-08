@@ -22,8 +22,5 @@ module.exports = {
     },
     write: ()=>{
         //Fazer inclusões para enviar o conteudo para a model
-    },
-    create: () =>{
-        //Deve mandar os dados de escrita para a model
     }
 }

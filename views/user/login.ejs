@@ -11,7 +11,9 @@
     <%- include('../partials/navbar'); %>
     <main>
         <form enctype="multipart/form-data" action="/login" method="POST">
+            <label for="email">E-mail:</label>
             <input type="email" name="email" id="form-camp">
+            <label for="email">Senha:</label>
             <input type="password" name="passwd" id="form-camp">
             <button type="submit" id="form-button">Enviar</button>
         </form>
