@@ -14,7 +14,7 @@ con.connect(function (err) {
         console.log("TB_users criada!")
     })
 
-    sql = "CREATE TABLE TB_texts (id INT(6) AUTO_INCREMENT PRIMARY KEY, title VARCHAR(225), institute VARCHAR(40), topic VARCHAR(255),time TIMESTAMP, fk_user INT  NOT NULL, FOREIGN KEY (fk_user) REFERENCES TB_users(id) )"
+    sql = "CREATE TABLE TB_texts (id INT(6) AUTO_INCREMENT PRIMARY KEY, title VARCHAR(225), institute VARCHAR(40), topic VARCHAR(255),redation MEDIUMTEXT, fk_user INT  NOT NULL, FOREIGN KEY (fk_user) REFERENCES TB_users(id) )"
     con.query(sql, function (err, result) {
         if (err) throw err
         console.log("TB_texts criada!")

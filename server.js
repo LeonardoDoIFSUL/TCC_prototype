@@ -2,7 +2,6 @@ var session = require('express-session')
 const express = require('express')
 const app = express()
 const port = 8080
-const cors = require('cors')
 
 const userController = require('./controllers/userController')
 const textController = require('./controllers/textController')
@@ -11,11 +10,7 @@ app.use(express.urlencoded({ extended:true}))
 app.use(express.static('public'))
 app.set('view engine','ejs')
 app.use(session({ //Vão ter sessões diferentes entre aluno e prof.
-    secret: 'Aluno',
-    saveUninitialized: true, //No exemplo do Roger esta como TRUE
-    resave: true
-},{
-    secret: 'Professor', //Mudar esse secret
+    secret: '2C44-4D44-WppQ38S',
     saveUninitialized: true, //No exemplo do Roger esta como TRUE
     resave: true
 }))
@@ -57,10 +52,14 @@ app.post('/editUser', userController.edit)
 app.get('/logout', userController.logout)
 
 //texto e editor
-app.get('/write',function(req,res){
-    res.render('write.ejs')
-}) 
+app.get('/write', textController.create) 
 app.post('/write', textController.write) //Quando terminar o texto e enviar, este é o método para inserir no banco
+
+app.get('/list', textController.index)
+
+app.get('/comment/:id', textController.comment)
+
+app.get('/delete/:id', textController.destroy)
 
 app.get('/textComplete',function(req,res){
     res.render('list.ejs')

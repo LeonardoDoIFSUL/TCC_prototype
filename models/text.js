@@ -5,13 +5,43 @@ const con = require('../BD/db').pool
 module.exports = {
 
     //Seleciona tudo de todos os textos | LISTA
-        async searchAll(){
-            const sql = "SELECT * FROM tb_texts"
-            return Promise((resolve,reject)=>{
-                con.query(sql,(err,row)=>{
+        async searchAllUser(req){
+            const sql = "SELECT * FROM TB_texts WHERE fk_user = ?";
+            const user_id = req.session.user_id
+            return new Promise((resolve,reject)=>{
+                con.query(sql,user_id,(err,row)=>{
                     if(err) reject(err)
                     resolve(row)
                 })
+            })
+        },
+
+        async searchOne(id){
+            const sql = "SELECT * FROM TB_texts WHERE id = ?";
+            return new Promise((resolve,reject)=>{
+                con.query(sql,id,(err,row)=>{
+                    if(err) reject(err)
+                    resolve(row)
+                })
+            })
+        },
+
+        create: function(title, test, assunt, redation, user_id){
+            let sql = "INSERT INTO TB_texts(title, institute, topic, redation, fk_user) VALUES ?"
+            let values = [
+                [title, test, assunt, redation, user_id]
+            ]
+            con.query(sql,[values],function(err, result){
+                if(err) throw err
+                console.log("Número de registros inseridos: ", result.affectedRows)
+            })
+        },
+
+        delete: function(id){
+            let sql = "DELETE * FROM TB_texts WHERE id = ?"
+            con.query(sql,id,function(err,result){
+                if(err) throw err
+                console.log("Numero de registros Apagados: ", result.affectedRows);
             })
         }
 

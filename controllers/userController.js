@@ -34,8 +34,12 @@ module.exports = {
             userModel.login(fields['email'],fields['passwd'])
             .then(result=>{
                 if(result){
+                    console.log(result)
                     req.session.loggedin = true
-                    req.session.username = fields['email']
+                    req.session.username = result.name
+                    req.session.image = result.image
+                    req.session.role = result.role
+                    req.session.user_id = result.id //USAR ISSO NO TEXTCONTROLLER PARA CRIAR REDAÇÃO
                 res.redirect('/')
             } else {
                 res.redirect('/login')
