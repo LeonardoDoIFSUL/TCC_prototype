@@ -4,51 +4,51 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <title>Listagem</title>
     <%- include('./partials/headers') %>
 </head>
+
 <body>
     <%- include('./partials/navbar'); %>
-    <main>
-        <H1>Seu portifólio de Redações:</H1>
-        <section>
-            <!---->
-            <div class="row"> 
-                <% dataText.forEach(function(data) { %>  
-                <div class="col-sm-3 mt-5">
-                    <div class="card border-0 bg-light">
-                        <div class="card-body">
-                            <h5 class="card-tittle"><b>Titulo</b></h5>
-                            <p class="card-text"><%= data.title %></p>
-    
-                            <h5 class="card-tittle"><b>Escola de teste:</b></h5>
-                            <p class="card-text"><%= data.test %></p>
-    
-                            <h5 class="card-tittle"><b>Tema</b></h5>
-                            <p class="card-text"><%= data.assunt %></p>
+        <main>
+            <H1>Seu portifólio de Redações:</H1>
+            <section>
+                <!---->
+                <div class="row">
+                    <% dataText.forEach(function(data) { %>
+                        <div class="col-sm-3 mt-5">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-tittle"><b>Titulo</b></h5>
+                                    <p class="card-text">
+                                        <%= data.title %>
+                                    </p>
 
-                            <h5 class="card-tittle"><b>Nota</b></h5>
-                            <p class="card-text"><!-- CRIAR FUNÇÃO PARA OBTER NOTAS --></p>
+                                    <h5 class="card-tittle"><b>Escola de teste:</b></h5>
+                                    <p class="card-text">
+                                        <%= data.institute %>
+                                    </p>
+
+                                    <h5 class="card-tittle"><b>Tema</b></h5>
+                                    <p class="card-text">
+                                        <%= data.topic %>
+                                    </p>
+
+                                </div>
+
+                                <button><a href="/readRedation/<%= data.id %>">Ler redação</a></button>
+                                <p class="card-text"><button><a href="/showComments/<%= data.id %>">Comentarios dos Avaliadores</a></button></p>
+                                <p class="card-text"><button><a href="/delete/<%= data.id %>">Apagar</a></button></p>
                             </div>
-                            
-                            <p class="card-text"><a href="/delete/<%= data.id %>">
-                                <span class="material-icons">delete</span> Apagar
-                                </a>
-                            </p>
-                            <!-- FAZER PARTE PARA COMENTARIO -->
-                            <p class="card-text"></a>
-                            <a href="/comment/:<%= data.id %>"> <!-- Criar essa rota para mostrar os comentarios dessa redação -->
-                                <span class="material-icons">prof.</span> Comentarios
-                            </a>
-                        </p>
                         </div>
-                    </div>
                 </div>
                 <% }) %>
-            </div>
-            <!---->
-        </section>
-    </main>
+                    </div>
+                    <!---->
+            </section>
+        </main>
 </body>
+
 </html>

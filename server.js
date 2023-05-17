@@ -1,7 +1,7 @@
 var session = require('express-session')
 const express = require('express')
 const app = express()
-const port = 8080
+const port = 3000
 
 const userController = require('./controllers/userController')
 const textController = require('./controllers/textController')
@@ -15,16 +15,10 @@ app.use(session({ //Vão ter sessões diferentes entre aluno e prof.
     resave: true
 }))
 
+
 //home
-app.get('/', function(req,res){
-    let name
-    if(req.session.username){
-        name = req.session.username
-    } else {
-        name = "convidado"
-    } 
-    res.render('home.ejs',{user: name})
-})
+app.get('/', userController.index)
+
 //TUTORIAL | PASSO 01 | PASSO 02 | PASSO 03 | DOWNLOAD
 app.get('/tutorial', function(req,res){ res.render('tutorial.ejs')}); 
 app.get('/step01',function(req,res){res.render('./tutor_steps/step01.ejs')});
@@ -42,28 +36,43 @@ app.get('/register', function(req,res){
 })
 app.post('/register', userController.storeUser)
 
-app.get('/perfil', userController.perfil)
+app.get('/perfil', userController.perfil) //TEM QUE CONSERTAR ESSA ROTA
 
-app.get('/editUser', function(req,res){
-    res.render('./user/editUser.ejs')
-})
-app.post('/editUser', userController.edit)
+app.get('/deleteUser', userController.deleteUser)
+
+app.get('/edit', userController.edit)
+app.post('/edit', userController.update)
 
 app.get('/logout', userController.logout)
 
+//CHAT
+app.get('/evaluetor', userController.showEvaluetors)
+app.get('/evaluetor/:page', userController.showEvaluetors_pages) //Paginação
+
+app.get('/studant', userController.showStudants)
+app.get('/studant/:page', userController.showStudants_pages) //Paginação
+
+app.post('/chat', userController.access)
+
+app.post('/recept', userController.recept)
+app.post('/searchMessage', userController.searchMessage)
+
 //texto e editor
+app.get('/readRedation/:id', textController.read)
+
 app.get('/write', textController.create) 
 app.post('/write', textController.write) //Quando terminar o texto e enviar, este é o método para inserir no banco
 
-app.get('/list', textController.index)
+app.get('/list', textController.indexUser)
 
-app.get('/comment/:id', textController.comment)
+app.get('/comment/:id', textController.comment) 
+app.post('/comment/:id', textController.commentCreate)
+
+app.get('/showcomments/:id',textController.showComments)
 
 app.get('/delete/:id', textController.destroy)
 
-app.get('/textComplete',function(req,res){
-    res.render('list.ejs')
-}) //Vai pra listagem | Tem que modificar
+app.get('/podium', textController.index)
 
 app.listen(port, function(){
     console.log(`Funcinando na porta ${port}`)

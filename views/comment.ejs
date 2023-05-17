@@ -9,7 +9,28 @@
     <main id="work-area">
         <article>
             <!-- Comentarios dos professores sobre a redação, fazer tipo o que esta no portfolio-->
-            
+            <section>
+                <!---->
+                <div class="row">
+                    <% dataComment.forEach(function(data) { %>
+                        <div class="col-sm-3 mt-5">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-tittle"><b>Nota:</b></h5>
+                                    <p class="card-text">
+                                        <%= data.score %>
+                                    </p>
+
+                                    <h5 class="card-tittle"><b>Commentario:</b></h5>
+                                    <p class="card-text">
+                                        <%= data.comment %>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <% }) %>
             <button type="button"><a href="/list">Voltar para portifolio</a></button>
         </article>
     </main>

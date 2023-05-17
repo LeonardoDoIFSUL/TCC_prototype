@@ -1,0 +1,32 @@
+<!-- ESTUDE A AULA 214 DO CURSO !!! -->
+
+<!-- ENSINA COMO MOSTRAR CONTEUDO DINAMICO EM PAGINA -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Listagem</title>
+    <%- include('./partials/headers') %>
+</head>
+
+<body>
+    <%- include('./partials/navbar'); %>
+    <main>
+            <% dataText.forEach(function(data) { %>
+            <H1>TItulo: <%= data.title %></H1>
+            <h2>Prova: <%= data.institute %></h2>
+            <h2>Assunto: <%= data.topic %></h2>
+            <section>
+                <!---->
+                <%= data.redation %>
+                                <p class="card-text"><button><a href="/showComments/<%= data.id %>">Comentarios dos Avaliadores</a></button></p>
+                                <p class="card-text"><button><a href="/list">Voltar</a></button></p>
+                <% }) %>
+                    </div>
+                    <!---->
+            </section>
+        </main>
+</body>
+
+</html>

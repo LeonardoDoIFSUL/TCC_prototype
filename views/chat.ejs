@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- CHAT tem um estilo diferente para caber o chat de maneira correta-->
+    <title>Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <link href="css/chat.css" type="text/css">
+</head>
+<body>
+    <%- include('./partials/navbar'); %>
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row container d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card card-bordered">
+                            <div class="card-header">
+                                <h4 class="card-title"><strong>Chat</strong></h4>
+                            </div>
+
+                            <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:1000px !important;">
+
+                            </div>
+
+                            <form action="javascript:recept()">
+                                <div class="publisher bt-1 border-light" >
+
+                                    <img class='avatar avatar-xs' src='images/<%= image %>' alt='...'>
+
+                                    <input class="publisher-input" type="text" placeholder="escreva uma mensagem" id="message">
+
+                                    <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/chat.js"></script>
+        <script type="text/javascript" language="javascript">
+           searchMessage(); // dispara a função para já buscar os dados quando carregar a página
+            // Executa novamente a função a cada 5000 milissegundos (1 segundo)
+          setInterval("searchMessage()", 5000);
+        </script>
+</body>
+
+</html>

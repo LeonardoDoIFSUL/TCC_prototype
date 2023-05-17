@@ -1,21 +1,24 @@
 <header>
 <div class="container" id="nav-container">
     <nav class="navbar navbar-expand-lg fixed-top">
-        <a href="/" class="navbar-brand">
-            <img src="./#" id="logo" alt="Botão Home"> 
-        </a>  
         <button class="navbar-toggler" type="button" data-togle="collapse"
         data-target="navbar-links" aria-controls="navbar-links" aria-extended="false"
         aria-label="Toggle-navgation">
             <span class="navbar-toggle-icon"></span>
+        <a href="/" class="navbar-brand">
+            <img src="./#" id="logo" alt="Botão Home"> 
+        </a>  
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
-          <a class="dropdown-item" href="/login">Realizar Login</a>
+          
           <a class="dropdown-item" href="/register">Realizar Cadastro</a>
-          <a class="dropdown-item" href="/perfil">Perfil</a>
+          <a class="dropdown-item" href="/perfil">Perfil</a> <!-- Os dados estão indo para a /home e não para a navbar-->
+          <a class="dropdown-item" href="/login">Realizar Login</a>
           <a class="dropdown-item" href="/tutorial">Tutorial</a>
-          <a class="dropdown-item" href="/logout">Sair</a>
           <a class="dropdown-item" href="/list">Portfolio</a>
+          <a class="dropdown-item" href="/podium">Pódio</a>
+          <a class="dropdown-item" href="/evaluetor">Falar com professor</a>
+          <a class="dropdown-item" href="/studant">Falar com estudante</a>
         </div>
     </nav>
     </div>

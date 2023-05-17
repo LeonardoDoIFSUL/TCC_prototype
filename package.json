@@ -9,6 +9,7 @@
   "author": "Leonardo Mendes",
   "license": "ISC",
   "dependencies": {
+    "ajax": "^0.0.4",
     "axios": "^1.3.5",
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.2.3",

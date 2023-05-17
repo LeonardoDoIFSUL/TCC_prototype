@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,32 @@
     <title>Perfil</title>
     <%- include('../partials/headers'); %>
 </head>
+
 <body>
     <%- include('../partials/navbar'); %>
-    <main>
-        <!-- Tudo aqui deve ser modificado para mostrar as infos do BD-->
-        <img src="../../public/images/#" alt="Imagem do Perifl">
-        <p>Nome do usuario</p>
-        <p>email</p>
-        <p>Estudante</p>
-        <button type="submit"><a href="/logout">Logout</a></button>
-        <button type="submit"><a href="/editUser">Editar</a></button>
-    </main>
+        <main>
+            <% dataUser.forEach(function(data){ %>
+            <label for="image">Imagem:</label>
+            <img src="images/<%= data['image'] %>" alt="Imagem do Perfil" style='width:150px;'>
+
+            <label for="name">Nome:</label>
+            <p>
+                <%= data['name']%>
+            </p>
+
+            <label for="email">Email:</label>
+            <p>
+                <%= data['email']%>
+            </p>
+
+            <label for="role">Função:</label>
+            <p>
+               <%= data['role']%> <!-- FAZER ISSO FICAR COM NOME ALUNO OU PROFESSOR -->
+            </p>
+            <button><a href="/edit">Editar Perfil</a></button>
+            <button><a class="dropdown-item" href="/logout">Sair</a></button> <!-- FAZER ESSA FUNÇÃO VIRAR DELETAR PERFIL -->
+        <% }) %>
+        </main>
 </body>
+
 </html>

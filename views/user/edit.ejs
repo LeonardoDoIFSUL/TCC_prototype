@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <%- include('../partials/headers'); %>
+</head>
+<body>
+    <%- include('../partials/navbar'); %>
+    <main>
+        <% dataUser.forEach(function(data){ %>
+        <form action="/edit" enctype="multipart/form-data" method="post">
+        
+        <label for="image">Imagem:</label>
+        <img src="images/<%= data['image'] %>" alt="Imagem do Perfil" style='width:150px;'>
+        <input type="file" name="image" id="">
+        <br>
+        <label for="name">Nome:</label>
+        <input type="text" name="name" placeholder="<%= data['name']%>">
+        <br>
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="<%= data['email']%>">
+        <br>
+        <label for="role">Status:</label>
+        <p><%= data['role']%> <i> *Você não tem permissão para modificar este status*</i></p>
+        <button type="submit">Enviar Modificação</button>
+    </form>
+    <button><a href="/deleteUser">Deletar Perfil</a></button><i>Lembre-se que ao fazer essa ação todas as suas conversas, notas, comentarios e redações serão perdidas</i> <!-- FAZER ESSA ROTA PARA MUDAR SENHA-->
+    <% }) %>
+    </main>
+</body>
+</html>

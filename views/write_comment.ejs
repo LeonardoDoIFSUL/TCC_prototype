@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Comentario e Pontuação</title>
+    <%- include('./partials/headers') %>
+</head>
+
+<body>
+    <%- include('./partials/navbar'); %>
+
+    <!-- VOCE PAROU AQUI!!! FALTA MODIFICAR A QUERY "SEARCHONE()" DO "TEXT.JS" PARA DEVOLVER O NOME DO ALUNO E PASSAR O "ID" DA REDAÇÃO -->
+        <main>
+            <% dataText.forEach(function(data) { %> 
+            <h5 class="card-tittle"><b>Estudante:</b></h5> <!-- MODIFICAR A QUERY SERCHONE() DO TEXT.JS-->
+            <p class="card-text"></p>
+
+            <h5 class="card-tittle"><b>Vestibular:</b></h5>
+            <p class="card-text"><%= data.test %></p>
+
+            <h5 class="card-tittle"><b>Titulo:</b></h5>
+            <p class="card-text"><%= data.title %></p>
+
+            <h5 class="card-tittle"><b>Tema:</b></h5>
+            <p class="card-text"><%= data.assunt %></p>
+
+            <h5 class="card-tittle"><b>Texto:</b></h5>
+            <p class="card-text"><%= data.redation %></p>
+            
+            <form enctype="multipart/form-data" action="/comment/<%= data.id %>" method="post">
+                
+                <label for="title">Nota:</label>
+                <input type="number" name="score" id="">
+                
+                <label for="assunt">Comentario:</label>
+                <textarea name="comment" id=""></textarea>
+                
+                <button type="submit"> Enviar Avaliação </button>
+            </form>
+            <% }) %>
+           
+        </main>
+</body>
+
+</html>
