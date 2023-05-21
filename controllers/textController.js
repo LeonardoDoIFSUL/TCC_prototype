@@ -20,15 +20,21 @@ module.exports = {
             } else {
             role = 0
             }
+            console.log(result)
             res.render('podium',{dataText: result, role: role}) //Envia os dados da model chamando a view "list"
         })
     },
 
     indexUser: async function(req,res){
+        if(req.session.loggedin){
         textModel.searchAllUser(req) //Criar essa função para buscar todos dentro da model
         .then(result=>{
             res.render('list',{dataText: result}) //Envia os dados da model chamando a view "list"
         })
+    } else{
+        let error = "Voce deve estar logado para ver seu portifólio"
+        res.redirect('/login', error)
+    }
     },
 
     comment: function(req, res){

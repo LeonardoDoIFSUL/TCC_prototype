@@ -32,8 +32,8 @@ module.exports = {
             name = null;
         var message;
         if (req.session.err) {
-            message = req.session.mensagem;
-            req.session.err = false;
+            message = req.session.err;
+            req.session.err = true;
         }
         else {
             message = "Realizar Login";
@@ -78,12 +78,6 @@ module.exports = {
     },
 
     perfil: async function (req, res) {
-        var name;
-        if (req.session.username){
-            name = req.session.username;
-        }
-        else
-            name = null;
         if (req.session.loggedin) {
             var id = req.session.user_id
             userModel.searchOne(id)
@@ -98,6 +92,9 @@ module.exports = {
                 .catch(err=>{
                     console.error(err)
                 })
+        } else {
+            req.session.err = "Você precisa estar logado para acessar o seu perfil"
+            res.redirect('/login', {message: req.session.err})
         }
     },
 
@@ -177,8 +174,9 @@ module.exports = {
             console.error(err)
             );
     },
+    
 
-    //CHAT ENTRE ESTUDANTES | AVALIADORES: tem que passar essas querys em banco para a model, aqui esta errado
+    //CHAT ENTRE ESTUDANTES | AVALIADORES
     showStudants: function (req, res) {
         if (req.session.loggedin) {
             //Este código tem paginação, tem que mudar isso caso não use BOOTSTRAP
@@ -278,7 +276,7 @@ module.exports = {
     },
 
     access: function (req, res) {
-        if (req.session.loggedin) {
+        if (req.session.loggedin != undefined){
             let user = req.session.username
             let user_id = req.session.user_id
             let image = req.session.image
@@ -287,7 +285,7 @@ module.exports = {
             res.render('chat', { image: image, user: user, user_id: user_id, converse_id: converse_id })
         } else {
             req.session.err = "Por favor faça login para acessar esta pagina"
-            res.redirect('/login')
+            res.redirect('/login', )
         }
     },
 

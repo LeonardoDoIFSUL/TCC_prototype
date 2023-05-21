@@ -3,13 +3,7 @@
 <head>
     <!-- CHAT tem um estilo diferente para caber o chat de maneira correta-->
     <title>Chat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-    <link href="css/chat.css" type="text/css">
+    <%- include('./partials/head_chat') %>
 </head>
 <body>
     <%- include('./partials/navbar'); %>
@@ -46,7 +40,7 @@
         <script type="text/javascript" language="javascript">
            searchMessage(); // dispara a função para já buscar os dados quando carregar a página
             // Executa novamente a função a cada 5000 milissegundos (1 segundo)
-          setInterval("searchMessage()", 5000);
+          setInterval("searchMessage()", 2000);
         </script>
 </body>
 

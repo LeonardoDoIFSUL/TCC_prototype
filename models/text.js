@@ -45,6 +45,16 @@ module.exports = {
         })
     },
 
+    async searchAllComment(id) { 
+        const sql = "SELECT * FROM TB_comments WHERE fk_user = ?";
+        return new Promise((resolve, reject) => {
+            con.query(sql, id, (err, row) => {
+                if (err) reject(err)
+                resolve(row)
+            })
+        })
+    },
+
     create: function (title, test, assunt, redation, user_id) {
         let sql = "INSERT INTO TB_texts(title, institute, topic, redation, fk_user) VALUES ?"
         let values = [
@@ -60,7 +70,13 @@ module.exports = {
         let sql = "DELETE FROM TB_texts WHERE id = ?"
         con.query(sql, id, function (err, result) {
             if (err) throw err
-            console.log("Numero de registros Apagados: ", result.affectedRows);
+            console.log("Numero de textos Apagados: ", result.affectedRows);
+
+            let sql2 = "DELETE FROM TB_comments WHERE fk_text = ?"
+            con.query*(sql2, id, function(err2, result2){
+                if(err2) throw err2
+                onsole.log("Numero de comentarios Apagados: ", result2.affectedRows);
+            })
         })
     },
 
