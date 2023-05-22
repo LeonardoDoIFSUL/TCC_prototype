@@ -31,9 +31,8 @@ module.exports = {
         else
             name = null;
         var message;
-        if (req.session.err) {
+        if (req.session.err != undefined) {
             message = req.session.err;
-            req.session.err = true;
         }
         else {
             message = "Realizar Login";
@@ -55,6 +54,7 @@ module.exports = {
                         req.session.user_id = result.id
                         res.redirect('/')
                     } else {
+                        req.session.err = "Email ou login incorretos";
                         res.redirect('/login')
                     }
                 })
@@ -78,7 +78,7 @@ module.exports = {
     },
 
     perfil: async function (req, res) {
-        if (req.session.loggedin) {
+        if (req.session.loggedin != undefined) {
             var id = req.session.user_id
             userModel.searchOne(id)
                 .then(result => {
@@ -94,7 +94,7 @@ module.exports = {
                 })
         } else {
             req.session.err = "Você precisa estar logado para acessar o seu perfil"
-            res.redirect('/login', {message: req.session.err})
+            res.redirect('/login')
         }
     },
 
@@ -121,8 +121,7 @@ module.exports = {
                 })
         }
         else {
-            req.session.err = true
-            req.session.message = "Por favor realize o login para concluir esta operação"
+            req.session.err = "Por favor realize o login para concluir esta operação"
             res.redirect('/login')
         }
     },

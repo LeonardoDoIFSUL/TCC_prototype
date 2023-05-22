@@ -12,11 +12,14 @@
     <main>
         <form enctype="multipart/form-data" action="/login" method="POST">
             <label for="email">E-mail:</label>
-            <input type="email" name="email" id="form-camp">
+            <input type="email" name="email" id="form-camp" required>
             <label for="email">Senha:</label>
-            <input type="password" name="passwd" id="form-camp">
+            <input type="password" name="passwd" id="form-camp" required>
             <button type="submit" id="form-button">Enviar</button>
         </form>
+        <% if(message != undefined){ %>
+        <p><%= message %></p>
+        <% } %>
     </main>
 </body>
 </html>

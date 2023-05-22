@@ -18,10 +18,10 @@
         <input type="file" name="image" id="">
         <br>
         <label for="name">Nome:</label>
-        <input type="text" name="name" placeholder="<%= data['name']%>">
+        <input type="text" name="name" placeholder="<%= data['name']%>" required>
         <br>
         <label for="email">Email:</label>
-        <input type="text" name="email" placeholder="<%= data['email']%>">
+        <input type="text" name="email" placeholder="<%= data['email']%>" required>
         <br>
         <label for="role">Status:</label>
         <p><%= data['role']%> <i> *Você não tem permissão para modificar este status*</i></p>

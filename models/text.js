@@ -14,18 +14,17 @@ module.exports = {
         })
     },
 
-    async searchAllUser(req) {
+    async searchAllUser(id) {
         const sql = "SELECT * FROM TB_texts WHERE fk_user = ?";
-        const user_id = req.session.user_id
         return new Promise((resolve, reject) => {
-            con.query(sql, user_id, (err, row) => {
+            con.query(sql, id, (err, row) => {
                 if (err) reject(err)
                 resolve(row)
             })
         })
     },
 
-    async searchOne(id) { 
+    async searchOne(id) {
         const sql = "SELECT * FROM TB_texts WHERE id = ?";
         return new Promise((resolve, reject) => {
             con.query(sql, id, (err, row) => {
@@ -35,7 +34,7 @@ module.exports = {
         })
     },
 
-    async searchCommentText(id) { 
+    async searchCommentText(id) {
         const sql = "SELECT * FROM TB_comments WHERE fk_text = ?";
         return new Promise((resolve, reject) => {
             con.query(sql, id, (err, row) => {
@@ -45,7 +44,7 @@ module.exports = {
         })
     },
 
-    async searchAllComment(id) { 
+    async searchAllComment(id) {
         const sql = "SELECT * FROM TB_comments WHERE fk_user = ?";
         return new Promise((resolve, reject) => {
             con.query(sql, id, (err, row) => {
@@ -73,21 +72,20 @@ module.exports = {
             console.log("Numero de textos Apagados: ", result.affectedRows);
 
             let sql2 = "DELETE FROM TB_comments WHERE fk_text = ?"
-            con.query*(sql2, id, function(err2, result2){
-                if(err2) throw err2
-                onsole.log("Numero de comentarios Apagados: ", result2.affectedRows);
+            con.query * (sql2, id, function (err2, result2) {
+                if (err2) throw err2
+                console.log("Numero de comentarios Apagados: ", result2.affectedRows);
             })
         })
     },
 
-    createComment: function(comment, score, fk_user, fk_text){
+    createComment: function (comment, score, fk_user, fk_text) {
         let sql = "INSERT INTO TB_comments(comment, score, fk_user, fk_text) VALUES ?"
-        //let fk_user = req.session.user_id O CÓDIGO ESTA TRAVANDO AQUI | Não ta chegando o user_id
         let values = [
             [comment, score, fk_user, fk_text]
         ]
-        con.query(sql, [values], function(err, result){
-            if(err) throw err
+        con.query(sql, [values], function (err, result) {
+            if (err) throw err
             console.log("Numero de linhas Comentadas: ", result.affectedRows);
         })
     }

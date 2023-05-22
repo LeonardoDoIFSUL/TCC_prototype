@@ -16,9 +16,6 @@
             <section>
                 <!---->
                 <div class="row">
-                    <% if(role == -1){ %>
-                        <p>Por favor faça login para escrever ou avaliar redações</p>
-                    <% } else{ %> 
                             <H1>Seu portifólio de Redações:</H1>
                             <button type="button"><a href="/write">+ Nova Redação</a></button>
                             <% dataText.forEach(function(data) { %>
@@ -48,7 +45,7 @@
                                     </div>
                                 </div>
                         </div>
-                        <% })} %>
+                        <% }) %>
                        
                     </div>
                 </div>
