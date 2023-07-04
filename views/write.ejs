@@ -11,7 +11,7 @@
         <main>
                 <form enctype="multipart/form-data" action="/write" method="post">
                     <label for="title">Titulo:</label>
-                    <input type="text" name="title" id="">
+                    <input type="text" name="title" id="" required>
                     <label for="test">Escola de Teste:</label>
                     <select name="test" id="">
                         <option value="LIVRE" selected>LIVRE</option>
@@ -23,13 +23,17 @@
                         <option value="ESPCEX">EsPCEx</option>
                         <option value="DEFERAL">Policia Federal</option>
                     </select>
+                    <br>
                     <label for="assunt">Tópico:</label>
-                    <input type="text" name="assunt" id="">
-                    <!-- Provavelmente vai ter que separar o texto do form para iniciar-->
-                    <textarea name="redation" id="myTextarea"></textarea>
-                    <button type="submit">Terminar redação e enviar</button>
+                    <input type="text" name="assunt" id="" required>
+                    <label for="assunt">Tornar visivel no pódio: </label>
+                    <input type="checkbox" name="visible" id="">
+                    <textarea id="my-expressjs-tinymce-app" name="redation">Escreva aqui sua redação!</textarea>
+                    <button type="submit" id="form-button">Enviar</button>
                 </form>
-           
+                <script type="application/javascript" src= "/tinymce/tinymce.min.js"></script>
+                <script type="application/javascript" src= "/javascripts/my-tinymce-config.js"></script>
+    <%- include('./partials/footers'); %>
         </main>
 </body>
 

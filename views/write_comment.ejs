@@ -30,15 +30,16 @@
             <form enctype="multipart/form-data" action="/comment/<%= data.id %>" method="post">
                 
                 <label for="title">Nota:</label>
-                <input type="number" name="score" id="">
+                <input type="number" name="score" id="" required>
                 
                 <label for="assunt">Comentario:</label>
-                <textarea name="comment" id=""></textarea>
+                <textarea id="my-expressjs-tinymce-app" name="redation">Escreva aqui sua redação!</textarea>
                 
                 <button type="submit"> Enviar Avaliação </button>
             </form>
             <% }) %>
-           
+            <script type="application/javascript" src= "/tinymce/tinymce.min.js"></script>
+            <script type="application/javascript" src= "/javascripts/my-tinymce-config.js"></script>
         </main>
 </body>
 

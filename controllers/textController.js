@@ -12,20 +12,39 @@ module.exports = {
     //Aqui vai todas as função que serão utilizadas pelas views e models
 
     index: async function (req, res) {
-        let role;
-        textModel.searchAll() //Criar essa função para buscar todos dentro da model
-            .then(result => {
-                if (req.session.role != undefined) {
-                    role = req.session.role
-                } else {
-                    role = 0
-                }
-                if (req.session.loggedin != undefined) {
-                    res.render('podium', { dataText: result, role: role })
-                } else {
-                    req.session.err = "Você precisa estar logado para acessar o pódio"
-                    res.redirect('/login')
-                }
+        var role;
+        var evaluetion = [];
+        textModel.searchAllPodium() //Modificar essa query para cada texto e não todos juntos
+        .then(result => {
+            if (result != undefined) {
+                for(let i=0;i<result.length;i++){
+                    var pivot = result[i]['id']
+                    console.log(pivot) 
+                    //evaluetion[pivot]= await funcaoQueBuscaNota(); | MUDAR PROMISSES PARA ASYNC vs AWAIT
+                    
+                    textModel.searchCommentText(pivot) 
+                    .then(result2 => {
+                        if (result2 != undefined) {
+                        result2.forEach(function(data2) {
+                            evaluetion[pivot] = data2['score']
+                            console.log(evaluetion) 
+                        })
+                    }  
+                })
+            }
+                    }
+                        if (req.session.role != undefined) {
+                            role = req.session.role
+                        } else {
+                            role = 0
+                        }
+                        if (req.session.loggedin != undefined) {
+                            res.render('podium', { dataText: result, role: role})
+                        } else {
+                            req.session.err = "Você precisa estar logado para acessar o pódio"
+                            res.redirect('/login')
+                        }
+                    
             })
     },
 
@@ -36,7 +55,7 @@ module.exports = {
                 .then(result => {
                     res.render('list', { dataText: result }) //Envia os dados da model chamando a view "list"
                 })
-                .catch(err=> console.error(err))
+                .catch(err => console.error(err))
         } else {
             req.session.err = "Voce deve estar logado para ver seu portifólio"
             res.redirect('/login')
@@ -95,19 +114,23 @@ module.exports = {
     },
 
     write: function (req, res) {
-        var form = new formidable.IncomingForm();
+        var form = new formidable.IncomingForm(); //Tá com erro aqui, não entra no PARSE
         form.parse(req, (err, fields) => {
             if (err) throw err;
             var user_id = req.session.user_id
-            textModel.create(fields['title'], fields['test'], fields['assunt'], fields['redation'], user_id)
+            if(fields['visible'] == undefined){
+                fields['visible'] = 0;
+            } else {
+                fields['visible'] = 1;
+            }
+            textModel.create(fields['title'], fields['test'], fields['assunt'], fields['redation'], fields['visible'], user_id)
         })
         res.redirect('/list')
     },
 
     destroy: function (req, res) {
         var id = req.params.id;
-        if (req.session.loggedin) {
-            textModel.searchOne(id) //Descobrir o por que de existir isso kkkk | é util eu juro
+        if (req.session.loggedin) { //Descobrir o por que de existir isso kkkk | é util eu juro
             textModel.delete(id)
             res.redirect('/list')
         }

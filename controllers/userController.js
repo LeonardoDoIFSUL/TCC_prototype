@@ -308,6 +308,7 @@ module.exports = {
         converse = req.session.converse_id
         feedback = ""
         let sql = "SELECT * FROM TB_users WHERE id = ? ORDER BY id;"
+        if(req.session.loggedin != undefined){
         con.query(sql, converse, function (err, result, fields) {
             if (err) throw err
             image_converse = result[0]['image']
@@ -318,7 +319,7 @@ module.exports = {
                 messages.forEach(function (data) {
                     if (user == data['send_id']) {
                         feedback = feedback + "<div class='media media-chat media-chat-reverse'>" +
-                            "<img class='avatar' src='images/" + image + "'>" +
+                            "<img class='avatar' src='images/" + image + "' width='50' height='50'>" +
                             "<div class='media-body'>" +
                             "<p>" + data['message'] + "</p>" +
                             "</div>" +
@@ -326,7 +327,7 @@ module.exports = {
                             "<div class='media media-meta-day'> </div>"
                     } else {
                         feedback = feedback + "<div class='media media-chat'>" +
-                            "<img class='avatar' src='imagens/" + image_converse + "'>" +
+                            "<img class='avatar' src='imagens/" + image_converse + "' width='50' height='50'>" +
                             "<div class='media-body'>" +
                             "<p>" + data['message'] + "</p>" +
                             "</div>" +
@@ -337,6 +338,9 @@ module.exports = {
                 res.send(JSON.stringify(feedback))
             })
         })
-
+    } else {
+        req.session.err = "Por favor faça login para acessar o chat"
+        res.redirect('/login')
+    }
     }
 }

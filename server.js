@@ -1,4 +1,5 @@
 var session = require('express-session')
+var path = require('path')
 const express = require('express')
 const app = express()
 const port = 3000
@@ -7,14 +8,15 @@ const userController = require('./controllers/userController')
 const textController = require('./controllers/textController')
 
 app.use(express.urlencoded({ extended:true}))
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine','ejs')
-app.use(session({ //Vão ter sessões diferentes entre aluno e prof.
+app.use(session({
     secret: '2C44-4D44-WppQ38S',
-    saveUninitialized: true, //No exemplo do Roger esta como TRUE
+    saveUninitialized: true, 
     resave: true
 }))
 
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 //home
 app.get('/', userController.index)
@@ -77,4 +79,3 @@ app.get('/podium', textController.index)
 app.listen(port, function(){
     console.log(`Funcinando na porta ${port}`)
 })
-
