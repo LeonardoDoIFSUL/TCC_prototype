@@ -72,6 +72,8 @@ app.post('/comment/:id', textController.commentCreate)
 
 app.get('/showcomments/:id',textController.showComments)
 
+app.get('/deleteComments/:id',textController.deleteComment)
+
 app.get('/delete/:id', textController.destroy)
 
 app.get('/podium', textController.index)
