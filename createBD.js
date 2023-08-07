@@ -7,7 +7,7 @@ const con = mySQL.createConnection({
 
 con.connect(function (err){
     if(err) throw err
-    let sql = "CREATE DATABASE TCC_prototype"
+    let sql = "CREATE DATABASE TCC_prototype_newArch"
     con.query(sql, function(err, result){
         if(err) throw err
         console.log("DataBase Criado com Sucesso")

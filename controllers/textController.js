@@ -13,38 +13,20 @@ module.exports = {
 
     index: async function (req, res) {
         var role;
-        var evaluetion = [];
         textModel.searchAllPodium() //Modificar essa query para cada texto e não todos juntos
-        .then(result => {
-            if (result != undefined) {
-                for(let i=0;i<result.length;i++){
-                    var pivot = result[i]['id']
-                    console.log(pivot) 
-                    //evaluetion[pivot]= await funcaoQueBuscaNota(); | MUDAR PROMISSES PARA ASYNC vs AWAIT
-                    
-                    textModel.searchCommentText(pivot) 
-                    .then(result2 => {
-                        if (result2 != undefined) {
-                        result2.forEach(function(data2) {
-                            evaluetion[pivot] = data2['score']
-                            console.log(evaluetion) 
-                        })
-                    }  
-                })
-            }
-                    }
-                        if (req.session.role != undefined) {
-                            role = req.session.role
-                        } else {
-                            role = 0
-                        }
-                        if (req.session.loggedin != undefined) {
-                            res.render('podium', { dataText: result, role: role})
-                        } else {
-                            req.session.err = "Você precisa estar logado para acessar o pódio"
-                            res.redirect('/login')
-                        }
-                    
+            .then(result => {
+                if (req.session.role != undefined) {
+                    role = req.session.role
+                } else {
+                    role = 0
+                }
+                if (req.session.loggedin != undefined) {
+                    res.render('podium', { dataText: result, role: role })
+                } else {
+                    req.session.err = "Você precisa estar logado para acessar o pódio"
+                    res.redirect('/login')
+                }
+
             })
     },
 
@@ -64,7 +46,7 @@ module.exports = {
 
     comment: function (req, res) {
         let id = req.params.id
-        textModel.searchOne(id) //Criar essa função para buscar todos dentro da model
+        textModel.searchOne(id)
             .then(result => {
                 res.render('write_comment', { dataText: result }) //Envia os dados da model chamando a view "list"
             })
@@ -77,16 +59,64 @@ module.exports = {
             var user_id = req.session.user_id
             var text_id = req.params.id
             textModel.createComment(fields['comment'], fields['score'], user_id, text_id) // Senao tiver tem que mudar aqui
+            textModel.takeNotes(text_id)
+                .then(result => {
+                    if (result != undefined) {
+                        var tot_score = 0
+                        var media = 0
+                        var score = []
+                        result.forEach(function (data) {
+                            score.push(data['score'])
+                        })
+                        for (let i = 0; i < score.length; i++) {
+                            tot_score = tot_score + score[i]
+                            console.log(score[i], score.length, tot_score)
+                        }
+                        media = (tot_score / score.length).toFixed(1)
+                        textModel.updateNote(text_id, media)
+                    }
+                })
         })
         res.redirect('/podium')
     },
 
     showComments: function (req, res) {
         let text_id = req.params.id
+        let id = req.session.user_id
         textModel.searchCommentText(text_id)
             .then(result => {
-                res.render('comment', { dataComment: result })
+                console.log(text_id)
+                res.render('comment', { dataComment: result, dataUser: id, text_id })
             })
+    },
+//REVER DAQUI PARA BAIXO | LOGICA TA PRECARIA
+    deleteComment: function (req, res) {
+        let comment_id = req.params.id
+        let text_infos
+        textModel.searchOneText_By_CommentId(comment_id)
+        .then(result=>{
+            text = result[0]['fk_text']
+            text_infos = result
+            textModel.deleteComment(comment_id)
+            textModel.takeNotes(text)
+                .then(result => {
+                    if (result[0] != undefined) {
+                        var tot_score = 0
+                        var media = 0
+                        var score = []
+                        result.forEach(function (data) {
+                            console.log(result)
+                            score.push(data['score'])
+                        })
+                        for (let i = 0; i < score.length; i++) {
+                            tot_score = tot_score + score[i]
+                        }
+                        media = (tot_score / score.length).toFixed(1)
+                        textModel.updateNote(text, media)
+                        res.redirect(`/showcomments/${text}`)
+                    }
+                })
+        })
     },
 
     read: function (req, res) {
@@ -117,13 +147,14 @@ module.exports = {
         var form = new formidable.IncomingForm(); //Tá com erro aqui, não entra no PARSE
         form.parse(req, (err, fields) => {
             if (err) throw err;
+            var valuetion_zero = 0
             var user_id = req.session.user_id
-            if(fields['visible'] == undefined){
+            if (fields['visible'] == undefined) {
                 fields['visible'] = 0;
             } else {
                 fields['visible'] = 1;
             }
-            textModel.create(fields['title'], fields['test'], fields['assunt'], fields['redation'], fields['visible'], user_id)
+            textModel.create(fields['title'], fields['test'], fields['assunt'], fields['redation'], fields['visible'], valuetion_zero, user_id)
         })
         res.redirect('/list')
     },

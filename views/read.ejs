@@ -14,14 +14,14 @@
     <%- include('./partials/navbar'); %>
     <main>
             <% dataText.forEach(function(data) { %>
-            <H1>TItulo: <%= data.title %></H1>
+            <H1>Titulo: <%= data.title %></H1>
             <h2>Prova: <%= data.institute %></h2>
             <h2>Assunto: <%= data.topic %></h2>
             <section>
                 <!---->
                 <%= data.redation %>
                                 <p class="card-text"><button><a href="/showComments/<%= data.id %>">Comentarios dos Avaliadores</a></button></p>
-                                <p class="card-text"><button><a href="/list">Voltar</a></button></p>
+                                <p class="card-text"><button><a href="/podium">Voltar</a></button></p>
                 <% }) %>
                     </div>
                     <!---->

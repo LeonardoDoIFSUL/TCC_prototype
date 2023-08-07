@@ -15,7 +15,7 @@ module.exports = {
     },
 
     async searchAllPodium() { // Seleciona todos os visiveis no pódio
-        const sql = "SELECT * FROM TB_texts where visible = 1";
+        const sql = "SELECT * FROM TB_texts where visible = 1 ORDER BY num_media DESC";
         return new Promise((resolve, reject) => {
             con.query(sql, (err, row) => {
                 if (err) reject(err)
@@ -44,6 +44,38 @@ module.exports = {
         })
     },
 
+    async searchOneText_By_CommentId(id) {
+        const sql = "SELECT * FROM TB_comments WHERE id = ?";
+        return new Promise((resolve, reject) => {
+            con.query(sql, id, (err, row) => {
+                if (err) reject(err)
+                resolve(row)
+            })
+        })
+    },
+//RESULVER TUDO DAQUI PARA BAIXO | CRIAR FUNÇÃO PARA ATUALIZAR DADOS NA TABELA
+    async updateNote(id, media){
+        //console.log(id + " " + media)
+        const sql = "UPDATE TB_texts SET num_media = ? WHERE id = ?";
+        let values = [media, id]
+        return new Promise((resolve, reject) => {
+            con.query(sql, values, (err, row) => {
+                if (err) reject(err)    
+                resolve(row)
+            })
+        })
+    },
+
+    takeNotes: function(id){
+        const sql = "SELECT * FROM TB_comments WHERE fk_text = ?";
+        return new Promise((resolve, reject) => {
+            con.query(sql, id, (err, row) => {
+                if (err) reject(err)
+                resolve(row)
+            })
+        })
+    },
+
     async searchCommentText(id) {
         const sql = "SELECT * FROM TB_comments WHERE fk_text = ?";
         return new Promise((resolve, reject) => {
@@ -64,10 +96,10 @@ module.exports = {
         })
     },
 
-    create: function (title, test, assunt, redation, visible, user_id) {
-        let sql = "INSERT INTO TB_texts(title, institute, topic, redation, visible, fk_user) VALUES ?"
+    create: function (title, test, assunt, redation, visible, valuetion_zero, user_id) {
+        let sql = "INSERT INTO TB_texts(title, institute, topic, redation, visible, num_media, fk_user) VALUES ?"
         let values = [
-            [title, test, assunt, redation, visible, user_id]
+            [title, test, assunt, redation, visible, valuetion_zero, user_id]
         ]
         con.query(sql, [values], function (err, result) {
             if (err) throw err
@@ -97,6 +129,14 @@ module.exports = {
             if (err) throw err
             console.log("Numero de linhas Comentadas: ", result.affectedRows);
         })
-    }
+    },
+
+    deleteComment: function (id) {
+        let sql = "DELETE FROM TB_comments WHERE id = ?"
+        con.query(sql, id, function (err, result) {
+            if (err) throw err
+            console.log("Numero de comentarios Apagados: ", result.affectedRows);
+        })
+    },
 
 }

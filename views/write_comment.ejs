@@ -29,11 +29,11 @@
             
             <form enctype="multipart/form-data" action="/comment/<%= data.id %>" method="post">
                 
-                <label for="title">Nota:</label>
+                <label for="score">Nota:</label>
                 <input type="number" name="score" id="" required>
                 
-                <label for="assunt">Comentario:</label>
-                <textarea id="my-expressjs-tinymce-app" name="redation">Escreva aqui sua redação!</textarea>
+                <label for="comment">Comentario:</label>
+                <textarea id="my-expressjs-tinymce-app" name="comment">Escreva aqui seu comentario!</textarea>
                 
                 <button type="submit"> Enviar Avaliação </button>
             </form>

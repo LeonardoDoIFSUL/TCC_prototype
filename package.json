@@ -4,15 +4,16 @@
   "description": "Primeira versão do TCC",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "author": "Leonardo Mendes",
   "license": "ISC",
   "dependencies": {
     "ajax": "^0.0.4",
-    "axios": "^1.3.5",
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "draft-js": "^0.11.7",
@@ -23,11 +24,11 @@
     "formidable": "^2.1.2",
     "handlebars": "^4.7.7",
     "mysql": "^2.18.1",
-    "mysql2": "^3.2.0",
+    "mysql2": "^3.5.2",
     "passport": "^0.6.0",
     "react": "~18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
-    "sequelize": "^6.31.0",
-    "tinymce": "^6.5.1"
+    "sequelize": "^6.32.1",
+    "tinymce": "^6.6.0"
   }
 }

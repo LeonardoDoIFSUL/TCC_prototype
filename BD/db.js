@@ -4,7 +4,7 @@ var pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "",
-    database: "TCC_prototype"
+    database: "TCC_prototype_newArch"
 });
 
 exports.pool = pool;

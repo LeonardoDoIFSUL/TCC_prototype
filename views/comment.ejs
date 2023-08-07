@@ -25,13 +25,16 @@
                                     <p class="card-text">
                                         <%= data.comment %>
                                     </p>
-
+                                    <% if(dataUser == data.fk_user){ %>
+                                    <button type="button"><a href="/deleteComments/<%= data.id %>">Deletar seu comentario</a></button>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
-                </div>
-                <button type="button"><a href="/readRedation/<%= data.fk_text %>">Voltar</a></button>
-                <% }) %>
+                    </div>
+                    <% }) %>
+                    <br>
+                <button type="button"><a href="/readRedation/<%= text_id %>">Voltar</a></button>
         </article>
     </main>
 </body>
