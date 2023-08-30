@@ -12,54 +12,67 @@
 
 <body>
     <%- include('./partials/navbar'); %>
-        <main>
-            <H1>Pódio de redações: </H1>
-            <section>
-                <!---->
-                <div class="row">
-                    <% dataText.forEach(function(data) { %>
-                        <div class="col-sm-3 mt-5">
-                            <div class="card border-0 bg-light">
-                                <div class="card-body">
-
-                                    <h5 class="card-tittle"><b>Escola de teste: </b></h5>
-                                    <p class="card-text">
-                                        <%= data.institute %>
-                                    </p>
-
-                                    <h5 class="card-tittle"><b>Tema: </b></h5>
-                                    <p class="card-text">
-                                        <%= data.topic %>
-                                    </p>
-
-                                    <h5 class="card-tittle"><b>Nota: </b></h5>
-                                    <p class="card-text">
-                                        <%= data.num_media %><!-- MOSTRAR NOME DO ESCRITOR-->
-                                    </p>
-
-                                    <h5 class="card-tittle"><b>Escritor: </b></h5>
-                                    <p class="card-text"><!-- CRIAR FUNÇÃO PARA OBTER NOTAS --></p>
-
-                                    <button><a href="/readRedation/<%= data.id %>">Ler redação</a></button>
-
-                                </div>
-                                <!-- FAZER PARTE PARA COMENTARIO -->
-                                <% if(role == 1){ %>
-                                <p class="card-text">
-                                    <a href="/comment/<%= data.id %>">
-                                        <!-- Criar essa rota para mostrar os comentarios dessa redação -->
-                                        <span class="material-icons">prof.</span> Ranquear e Comentar
-                                    </a>
-                                </p>
-                                <% } %>
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-baseline">
+                    <main>
+                        <section>
+                            <div class="container">
+                                <h2 style="color: white">Pódio de redações </h2>
+                                <table class="table table-bordered table-hover text-center ">
+                                    <thead class="thead-dark p-3 mb-2 bg-light text-dark align-self-center">
+                                        <tr>
+                                            <th>Pontuação</th>
+                                            <th>Tema</th>
+                                            <th>Vestibular</th>
+                                            <th>Ações</th>
+                                            <% if(role == 1){ %>
+                                            <th>Avaliar</th>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbody-dark p-3 mb-2 bg-white text-dark ">
+                                        <% dataText.forEach(function(data) { %>
+                                            <tr>
+                                                <td>
+                                                    <%= data.num_media %>
+                                                </td>
+                                                <td>
+                                                    <%= data.topic %>
+                                                </td>
+                                                <td>
+                                                    <%= data.institute %>
+                                                    
+                                                </td>
+                                                
+                                                <td> <a href="/readRedation/<%= data.id %>">
+                                                        <span class="material-icons ">Ler redação </span>
+                                                    </a>
+                                                    <a href="/showComments/<%= data.id %>">
+                                                        <span class="material-icons ">Comentarios </span>
+                                                    </a>
+                                                    
+                                                </td>
+                                                <% if(role == 1){ %>
+                                                <td>
+                                                        <a href="/comment/<%= data.id %>">
+                                                            <span class="material-icons ">Ranquear e Comentar</span>
+                                                        </a>
+                                                    </td>
+                                                    <% } %>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
+                        </section>
+                    </main>
                 </div>
-                <% }) %>
-                    </div>
-                    <!---->
-            </section>
-        </main>
+            </div>
+        </div>
+    </header>
+       
 </body>
 
 </html>

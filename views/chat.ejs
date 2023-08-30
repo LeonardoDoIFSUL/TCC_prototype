@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <!-- CHAT tem um estilo diferente para caber o chat de maneira correta-->
+    <%- include('./partials/headers') %>
     <title>Chat</title>
-    <%- include('./partials/head_chat') %>
 </head>
 <body>
     <%- include('./partials/navbar'); %>
-        <div class="page-content page-container" id="page-content">
-            <div class="padding">
-                <div class="row container d-flex justify-content-center">
-                    <div class="col-md-6">
-                        <div class="card card-bordered">
-                            <div class="card-header">
-                                <h4 class="card-title"><strong>Chat</strong></h4>
-                            </div>
+    <header class="masthead">
+        <div class="container">
+            <div class="align-items-center justify-content-center text-center">
+                <div class=" align-self-baseline">
+                    <h2 class="card-title">Chat</h2>
+                        <div class="page-content page-container" id="page-content">
+                            <div class="padding">
+                                <div class="row container d-flex justify-content-center">
+                                    <div class="col-md-6">
+                                        <div class="card card-bordered">
 
-                            <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:1000px !important;">
+                                            <div class="ps-container ps-theme-default ps-active-y" id="chat-content"
+                                                style="overflow-y: scroll !important; height:1000px !important;">
 
-                            </div>
+                                            </div>
 
-                            <form action="javascript:recept()">
-                                <div class="publisher bt-1 border-light" >
+                                            <form action="javascript:recept()">
+                                                <div class="publisher bt-1 border-light">
 
-                                    <img class='avatar avatar-xs' src='images/<%= image %>' alt='...' width="50" height="50">
+                                                    <img class='avatar avatar-xs' src='images/<%= image %>' alt='...'
+                                                        width="50" height="50">
 
-                                    <input class="publisher-input" type="text" placeholder="escreva uma mensagem" id="message">
+                                                    <input class="publisher-input" type="text"
+                                                        placeholder="escreva uma mensagem" id="message">
 
-                                    <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                                                    <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </header>
         <script type="text/javascript" src="js/chat.js"></script>
         <script type="text/javascript" language="javascript">
-           searchMessage(); // dispara a função para já buscar os dados quando carregar a página
+            searchMessage(); // dispara a função para já buscar os dados quando carregar a página
             // Executa novamente a função a cada 5000 milissegundos (1 segundo)
-          setInterval("searchMessage()", 2000);
+            setInterval("searchMessage()", 2000);
         </script>
 </body>
 

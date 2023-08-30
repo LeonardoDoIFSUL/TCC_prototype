@@ -1,3 +1,5 @@
+
+
 <!-- ESTUDE A AULA 214 DO CURSO !!! -->
 
 <!-- ENSINA COMO MOSTRAR CONTEUDO DINAMICO EM PAGINA -->
@@ -12,21 +14,34 @@
 
 <body>
     <%- include('./partials/navbar'); %>
-    <main>
-            <% dataText.forEach(function(data) { %>
-            <H1>Titulo: <%= data.title %></H1>
-            <h2>Prova: <%= data.institute %></h2>
-            <h2>Assunto: <%= data.topic %></h2>
-            <section>
-                <!---->
-                <%= data.redation %>
-                                <p class="card-text"><button><a href="/showComments/<%= data.id %>">Comentarios dos Avaliadores</a></button></p>
-                                <p class="card-text"><button><a href="/podium">Voltar</a></button></p>
-                <% }) %>
+        <header class="masthead">
+            <div class="container">
+                <div class="align-items-center justify-content-center text-center">
+                    <div class=" align-self-baseline">
+                        <main>
+                            <% dataText.forEach(function(data) { %>
+                                <H1>Titulo: <%= data.title %>
+                                </H1>
+                                <h2>Prova: <%= data.institute %>
+                                </h2>
+                                <h2>Assunto: <%= data.topic %>
+                                </h2>
+                                <section>
+                                    
+                                    <textarea id="my-expressjs-tinymce-app" name="redation"
+                                                style="width:900px; height:1000px"><%= data.redation %></textarea>
+                                        <p class="card-text"><button><a href="/showComments/<%= data.id %>">Comentarios
+                                                    dos Avaliadores</a></button></p>
+                                        <p class="card-text"><button><a href="/podium">Voltar</a></button></p>
+                                        <% }) %>
                     </div>
-                    <!---->
-            </section>
-        </main>
+                 
+                    </section>
+                    </main>
+                </div>
+            </div>
+            </div>
+        </header>
 </body>
 
 </html>

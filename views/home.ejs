@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <title>Home</title>
     <%- include('./partials/headers') %>
 </head>
 <body>
-    <%- include('./partials/navbar'); %>
-    <main id="work-area">
-        
-        <h1>Bem-Vindo <%= user %> </h1> <!-- REVER EXEMPLO DE DROP DOWN DO ROGER-->
-        <h1>Comece a praticar redação da maneira correta</h1><br>
-        <h2>Descubra seu objetivo</h2><br>
-        <% if(role == -1){ %>
-       <p>Por favor faça login para escrever ou avaliar redações</p>
-        <% } else if(role == 0){ %>
-        <button type="button"><a href="/write">+ Nova Redação</a></button>
-        <% } else { %> 
-        <button type="button"><a href="/podium">Avaliar redação</a></button>
-        <% } %>
-        <!-- Conteudo do site para iniciar uma nova redação e artigos-->
-    </main>
-    <article>
-        <!-- Vestibulares famosos-->
-        <!-- VER FUNÇÃO ESQUECI A SENHA-->
-    </article>
-</body>
+<%- include('./partials/navbar'); %>
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                      
+                            <h1 class="text-white font-weight-bold">Bem-Vindo(a) <%= user %>
+                            </h1>
+                            <hr class="divider" />
+                        </div>
+                        <div class="col-lg-8 align-self-baseline">
+                            <p class="text-white-75 mb-5">Comece a praticar redação da maneira correta!</p>
+                            <p class="text-white-75 mb-5">Descubra seu objetivo</p>
+                            <% if(role==-1){ %>
+                                <p class="text-white-75 mb-5">Por favor faça login para escrever ou avaliar redações</p>
+                                <% } else if(role==0){ %>
+                                    <a class="btn btn-primary btn-xl" href="/write">Nova Redação</a>
+                                    <% } else { %>
+                                        <a class="btn btn-primary btn-xl" href="/podium">Avaliar redação</a>
+                                        <% } %>
+                                
+                        </div>
+                    </div>
+                </div>
+            <article>
+                <!-- Vestibulares famosos-->
+                <!-- VER FUNÇÃO ESQUECI A SENHA-->
+            </article>
+        </header>
+    </body>
+
 </html>

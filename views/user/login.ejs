@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,85 @@
     <title>Login</title>
     <%- include('../partials/headers'); %>
 </head>
+
 <body>
     <%- include('../partials/navbar'); %>
-    <main>
-        <form enctype="multipart/form-data" action="/login" method="POST">
-            <label for="email">E-mail:</label>
-            <input type="email" name="email" id="form-camp" required>
-            <label for="email">Senha:</label>
-            <input type="password" name="passwd" id="form-camp" required>
-            <button type="submit" id="form-button">Enviar</button>
-        </form>
-        <% if(message != undefined){ %>
-        <p><%= message %></p>
-        <% } %>
-    </main>
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-center">
+                        <main>
+                            <section class="page-section" id="contact">
+                                <div class="container px-4 px-lg-5">
+                                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                                        <div class="col-lg-8 col-xl-6 text-center">
+                                            <h2 class="mt-0">Logar</h2>
+                                            <hr class="divider" />
+                                            <p class="text-muted mb-5">Digite suas credenciais para entrar na conta</p>
+                                        </div>
+                                    </div>
+                                    <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                                        <div class="col-lg-6">
+                                            <form id="contactForm" enctype="multipart/form-data" action="/login"
+                                                method="POST" data-sb-form-api-token="API_TOKEN">
+                                                <!-- Email address input-->
+                                                <div class="form-floating mb-3">
+                                                    <input name="email" class="form-control" id="email" type="email"
+                                                        placeholder="name@example.com"
+                                                        data-sb-validations="required,email" />
+                                                    <label for="email">Email</label>
+                                                    <div class="invalid-feedback" data-sb-feedback="email:required">Um
+                                                        email é necessário.
+                                                    </div>
+                                                    <div class="invalid-feedback" data-sb-feedback="email:email">Email
+                                                        invalido.</div>
+                                                </div>
+                                                <!-- Password input-->
+                                                <div class="form-floating mb-3">
+                                                    <input name="passwd" class="form-control" id="phone" type="password"
+                                                        placeholder="palavra chave" data-sb-validations="required" />
+                                                    <label for="phone">Senha</label>
+                                                    <div class="invalid-feedback" data-sb-feedback="phone:required">
+                                                        Senha invalida</div>
+                                                </div>
+                                                <!-- Submit success message-->
+                                                <!---->
+                                                <!-- This is what your users will see when the form-->
+                                                <!-- has successfully submitted-->
+                                                <div class="d-none" id="submitSuccessMessage">
+                                                    <div class="text-center mb-3">
+                                                        <div class="fw-bolder">Enviado com sucesso!</div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Submit error message-->
+                                                <!---->
+                                                <!-- This is what your users will see when there is-->
+                                                <!-- an error submitting the form-->
+                                                <div class="d-none" id="submitErrorMessage">
+                                                    <div class="text-center text-danger mb-3">Erro no envio, tente
+                                                        novamente mais tarde!
+                                                    </div>
+                                                </div>
+
+                                                <!-- Submit Button-->
+                                                <div class="d-grid"><button class="btn btn-primary btn-xl" type="submit"
+                                                        id="form-submit">Logar</button></div>
+                                                <% if(message !=undefined){ %>
+                                                    <p class="text-muted mb-0"> Aviso:
+                                                        <%= message %>
+                                                    </p>
+                                                    <% } %>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </header>
 </body>
+
 </html>

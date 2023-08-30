@@ -8,39 +8,57 @@
 
 <body>
     <%- include('./partials/navbar'); %>
+        <header class="masthead">
+            <div class="container">
+                <div class="align-items-center justify-content-center text-center">
+                    <div class=" align-self-baseline">
+                        <!-- VOCE PAROU AQUI!!! FALTA MODIFICAR A QUERY "SEARCHONE()" DO "TEXT.JS" PARA DEVOLVER O NOME DO ALUNO E PASSAR O "ID" DA REDAÇÃO -->
+                        <main>
+                            <% dataText.forEach(function(data) { %>
+                                <h5 class="card-tittle"><b>Estudante:</b></h5>
+                                <!-- MODIFICAR A QUERY SERCHONE() DO TEXT.JS-->
+                                <p class="card-text"></p>
 
-    <!-- VOCE PAROU AQUI!!! FALTA MODIFICAR A QUERY "SEARCHONE()" DO "TEXT.JS" PARA DEVOLVER O NOME DO ALUNO E PASSAR O "ID" DA REDAÇÃO -->
-        <main>
-            <% dataText.forEach(function(data) { %> 
-            <h5 class="card-tittle"><b>Estudante:</b></h5> <!-- MODIFICAR A QUERY SERCHONE() DO TEXT.JS-->
-            <p class="card-text"></p>
+                                <h5 class="card-tittle"><b>Vestibular:</b></h5>
+                                <p class="card-text">
+                                    <%= data.test %>
+                                </p>
 
-            <h5 class="card-tittle"><b>Vestibular:</b></h5>
-            <p class="card-text"><%= data.test %></p>
+                                <h5 class="card-tittle"><b>Titulo:</b></h5>
+                                <p class="card-text">
+                                    <%= data.title %>
+                                </p>
 
-            <h5 class="card-tittle"><b>Titulo:</b></h5>
-            <p class="card-text"><%= data.title %></p>
+                                <h5 class="card-tittle"><b>Tema:</b></h5>
+                                <p class="card-text">
+                                    <%= data.assunt %>
+                                </p>
 
-            <h5 class="card-tittle"><b>Tema:</b></h5>
-            <p class="card-text"><%= data.assunt %></p>
+                                <h5 class="card-tittle"><b>Texto:</b></h5>
+                                <p class="card-text">
+                                    <%= data.redation %>
+                                </p>
 
-            <h5 class="card-tittle"><b>Texto:</b></h5>
-            <p class="card-text"><%= data.redation %></p>
-            
-            <form enctype="multipart/form-data" action="/comment/<%= data.id %>" method="post">
-                
-                <label for="score">Nota:</label>
-                <input type="number" name="score" id="" required>
-                
-                <label for="comment">Comentario:</label>
-                <textarea id="my-expressjs-tinymce-app" name="comment">Escreva aqui seu comentario!</textarea>
-                
-                <button type="submit"> Enviar Avaliação </button>
-            </form>
-            <% }) %>
-            <script type="application/javascript" src= "/tinymce/tinymce.min.js"></script>
-            <script type="application/javascript" src= "/javascripts/my-tinymce-config.js"></script>
-        </main>
+                                <form enctype="multipart/form-data" action="/comment/<%= data.id %>" method="post">
+
+                                    <label for="score">Nota:</label>
+                                    <input type="number" name="score" id="" required>
+
+                                    <label for="comment">Comentario:</label>
+                                    <textarea id="my-expressjs-tinymce-app"
+                                        name="comment">Escreva aqui seu comentario!</textarea>
+
+                                    <button type="submit"> Enviar Avaliação </button>
+                                </form>
+                                <% }) %>
+                                    <script type="application/javascript" src="/tinymce/tinymce.min.js"></script>
+                                    <script type="application/javascript"
+                                        src="/javascripts/my-tinymce-config.js"></script>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </header>
 </body>
 
 </html>

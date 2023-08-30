@@ -11,29 +11,37 @@
 
 <body>
     <%- include('../partials/navbar'); %>
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100 ">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-10 align-self-center">
         <main>
             <% dataUser.forEach(function(data){ %>
-            <label for="image">Imagem:</label>
-            <img src="images/<%= data['image'] %>" alt="Imagem do Perfil" style='width:150px;'>
+                <section class="page-section" id="contact">
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-lg-8 col-xl-6 text-center">
+                                <h2 class="mt-0">Seu perfil</h2>
+                                <hr class="divider" />
+                                <img src="images/<%= data['image'] %>" alt="Imagem do Perfil" style='width:200px; border-radius: 10%; border-style: groove;'>
 
-            <label for="name">Nome:</label>
-            <p>
-                <%= data['name']%>
-            </p>
+                                <p class="text-muted mb-5">Nome: <%= data['name']%></p>
+                            
+                                <p class="text-muted mb-5">Email: <%= data['email']%></p>
+                          
+                                <p class="text-muted mb-5">Função: <%= data['role']%></p>
 
-            <label for="email">Email:</label>
-            <p>
-                <%= data['email']%>
-            </p>
-
-            <label for="role">Função:</label>
-            <p>
-               <%= data['role']%> <!-- FAZER ISSO FICAR COM NOME ALUNO OU PROFESSOR -->
-            </p>
-            <button><a href="/edit">Editar Perfil</a></button>
-            <button><a class="dropdown-item" href="/logout">Sair</a></button> <!-- FAZER ESSA FUNÇÃO VIRAR DELETAR PERFIL -->
+                                <a class="btn btn-primary btn-xl" href="/edit">Editar perfil</a>
+                                <a class="btn btn-primary btn-xl" href="/logout">Sair</a>
+                            </div>
+                        </div>
+            
         <% }) %>
         </main>
+    </div>
+</div>
+</div>
+</header>
 </body>
 
 </html>

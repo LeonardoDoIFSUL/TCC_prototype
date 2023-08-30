@@ -12,46 +12,61 @@
 
 <body>
     <%- include('./partials/navbar'); %>
-        <main>
-            <section>
-                <!---->
-                <div class="row">
-                            <H1>Seu portifólio de Redações:</H1>
-                            <button type="button"><a href="/write">+ Nova Redação</a></button>
-                            <% dataText.forEach(function(data) { %>
-                                <div class="col-sm-3 mt-5">
-                                    <div class="card border-0 bg-light">
-                                        <div class="card-body">
-                                            <h5 class="card-tittle"><b>Titulo</b></h5>
-                                            <p class="card-text">
-                                                <%= data.title %>
-                                            </p>
-        
-                                            <h5 class="card-tittle"><b>Escola de teste:</b></h5>
-                                            <p class="card-text">
-                                                <%= data.institute %>
-                                            </p>
-        
-                                            <h5 class="card-tittle"><b>Tema</b></h5>
-                                            <p class="card-text">
-                                                <%= data.topic %>
-                                            </p>
-        
-                                        </div>
-                                        
-                                        <button><a href="/readRedation/<%= data.id %>">Ler redação</a></button>
-                                        <p class="card-text"><button><a href="/showComments/<%= data.id %>">Comentarios dos Avaliadores</a></button></p>
-                                        <p class="card-text"><button><a href="/delete/<%= data.id %>">Apagar</a></button></p>
-                                    </div>
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-baseline">
+                        <main>
+                            <section>
+                                <div class="container">
+                                    <h2 style="color: white">Seu portifólio</h2>
+                                    <table class="table table-bordered table-hover text-center ">
+                                        <thead class="thead-dark p-3 mb-2 bg-light text-dark align-self-center">
+                                            <tr>
+                                                <th>Pontuação</th>
+                                                <th>Titulo</th>
+                                                <th>Vestibular</th>
+                                                <th>Tema</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbody-dark p-3 mb-2 bg-white text-dark ">
+                                            <% dataText.forEach(function(data) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= data.num_media %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data.title %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data.institute %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data.topic %>
+                                                    </td>
+
+                                                    <td> <a href="/readRedation/<%= data.id %>">
+                                                            <span class="material-icons ">Ler redação </span>
+                                                        </a>
+                                                        <a href="/showComments/<%= data.id %>">
+                                                            <span class="material-icons ">Comentarios </span>
+                                                        </a>
+                                                        <a href="/delete/<%= data.id %>">
+                                                            <span class="material-icons ">Apagar </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                        </tbody>
+                                    </table>
                                 </div>
-                        </div>
-                        <% }) %>
-                       
+                            </section>
+                        </main>
                     </div>
                 </div>
-                    <!---->
-            </section>
-        </main>
+            </div>
+        </header>
 </body>
 
 </html>

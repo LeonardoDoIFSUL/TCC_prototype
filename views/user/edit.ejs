@@ -9,6 +9,10 @@
 </head>
 <body>
     <%- include('../partials/navbar'); %>
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
     <main>
         <% dataUser.forEach(function(data){ %>
         <form action="/edit" enctype="multipart/form-data" method="post">
@@ -30,5 +34,9 @@
     <button><a href="/deleteUser">Deletar Perfil</a></button><i>Lembre-se que ao fazer essa ação todas as suas conversas, notas, comentarios e redações serão perdidas</i> <!-- FAZER ESSA ROTA PARA MUDAR SENHA-->
     <% }) %>
     </main>
+</div>
+</div>
+</div>
+</header>
 </body>
 </html>
