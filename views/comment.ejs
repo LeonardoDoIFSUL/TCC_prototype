@@ -15,34 +15,36 @@
                         <main id="work-area">
                             <article>
                                 <!-- Comentarios dos professores sobre a redação, fazer tipo o que esta no portfolio-->
-                                <section>
                                     <!---->
-                                    <div class="row">
+                                    <div class="row" style="margin-top: 20px;padding-bottom: 15px;border-radius: 10px ;overflow-y: scroll; max-height: 750px; background-color:rgb(197, 196, 196);">
                                         <% dataComment.forEach(function(data) { %>
-                                            <div class="col-sm-3 mt-5">
+                                            <div class="col-sm-3 mt-3" style="width: fit-content; max-width: 660px;overflow-y: scroll;">
                                                 <div class="card border-0 bg-light">
                                                     <div class="card-body">
-                                                        <h5 class="card-tittle"><b>Nota:</b></h5>
+                                                        <h5 class="card-tittle" style="color:black; text-decoration: solid;"><b>Nota:</b></h5>
                                                         <p class="card-text">
                                                             <%= data.score %>
                                                         </p>
 
-                                                        <h5 class="card-tittle"><b>Commentario:</b></h5>
+                                                        <h5 class="card-tittle" style="color:black; text-decoration: solid;"><b>Commentario:</b></h5>
                                                         <p class="card-text">
-                                                            <%= data.comment %>
+                                                            <%- data.comment %>
                                                         </p>
                                                         <% if(dataUser==data.fk_user){ %>
-                                                            <button type="button"><a
+                                                            <a class="btn btn-primary btn-xl mb-3" style="border-radius: 5px;"
                                                                     href="/deleteComments/<%= data.id %>">Deletar seu
-                                                                    comentario</a></button>
+                                                                    comentario</a>
                                                             <% } %>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
+                                            <% }) %>
                                     </div>
-                                    <% }) %>
-                                        <br>
-                                        <button type="button"><a href="/readRedation/<%= text_id %>">Voltar</a></button>
+                                       <div class="row">
+                                        <div class="d-grid mb-3 justify-content-center"><button type="button" class="btn" style="width: 150%;"
+                                            id="form-submit"><a class="btn btn-primary btn-xl mb-3" href="/readRedation/<%= text_id %>">Voltar</a></button>
+                                        </div>
                             </article>
                         </main>
                     </div>

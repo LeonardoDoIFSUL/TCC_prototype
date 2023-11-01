@@ -1,5 +1,3 @@
-
-
 <!-- ESTUDE A AULA 214 DO CURSO !!! -->
 
 <!-- ENSINA COMO MOSTRAR CONTEUDO DINAMICO EM PAGINA -->
@@ -13,33 +11,46 @@
 </head>
 
 <body>
-    <%- include('./partials/navbar'); %>
-        <header class="masthead">
+    <header class="masthead">
+            <%- include('./partials/navbar'); %>
             <div class="container">
-                <div class="align-items-center justify-content-center text-center">
-                    <div class=" align-self-baseline">
-                        <main>
+                <div class=" align-self-baseline ">
+                    <main>
+                        <section>
+                        <div class="row align-items-center justify-content-center text-center">
                             <% dataText.forEach(function(data) { %>
-                                <H1>Titulo: <%= data.title %>
-                                </H1>
-                                <h2>Prova: <%= data.institute %>
+                                <div class="col">
+                                    <h2 style="background-color: whitesmoke; border-radius: 5px; color: black; margin-left: 35px;">Titulo: <%= data.title %>
+                                    </h2>
+                                </div>
+                                <div class="col">
+                                    <h2 style="background-color: whitesmoke; border-radius: 5px; color: black; margin-right: 35px;">Prova: <%= data.institute %> 
+                                    </h2>
+                                </div>
+                        </div>
+                        <div class="row align-items-center justify-content-center text-center">
+                            <div class="col">
+                                <h2 style="background-color: whitesmoke; border-radius: 5px; color: black; margin-inline: 35px;">Assunto: <%= data.topic %>   </h2>
                                 </h2>
-                                <h2>Assunto: <%= data.topic %>
-                                </h2>
-                                <section>
-                                    
-                                    <textarea id="my-expressjs-tinymce-app" name="redation"
-                                                style="width:900px; height:1000px"><%= data.redation %></textarea>
-                                        <p class="card-text"><button><a href="/showComments/<%= data.id %>">Comentarios
-                                                    dos Avaliadores</a></button></p>
-                                        <p class="card-text"><button><a href="/podium">Voltar</a></button></p>
-                                        <% }) %>
-                    </div>
-                 
-                    </section>
+                            </div>
+                        </div>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col bg-white rounded mx-5 p-5" style="overflow-y: scroll; width:900px; height:650px;">
+                                <%- data.redation %>
+                            </div>
+                        </div>
+                            <div class="row align-items-center justify-content-center text-center mt-3">
+                                <div class="col justify-content-center">
+                                   <a class="btn btn-primary btn-xl mb-3" href="/showComments/<%= data.id %>">Comentarios dos Avaliadores</a>
+                                </div>
+                                <div class="col justify-content-center">
+                                    <a class="btn btn-primary btn-xl mb-3" href="/podium">Voltar</a>
+                                </div>
+                            </div>
+                            <% }) %>
+                        </section>
                     </main>
                 </div>
-            </div>
             </div>
         </header>
 </body>

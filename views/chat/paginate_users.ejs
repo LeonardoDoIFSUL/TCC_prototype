@@ -3,29 +3,29 @@
     <nav aria-label="Page navigation example m5" >
         <ul class="pagination justify-content-center" >
             <% if (current == 1) { %>
-                <li class="page-item disabled" style="border-color: #A0AD67; color: #A0AD67;"><a class="page-link" style="border-color: #A0AD67; color: #A0AD67;">Primeiro</a></li>
+                <li class="page-item disabled" style="border-color: #f4623a; color: #f4623a;"><a class="page-link" style="border-color: #f4623a; color: #f4623a;">Primeiro</a></li>
             <% } else { %>
-                <li style=" border-color: #A0AD67; color: #A0AD67;"><a class="page-link" style="border-color: #A0AD67; color: #A0AD67;" href="/studant/1">Primeiro</a></li>
+                <li style=" border-color: #f4623a; color: #f4623a;"><a class="page-link" style="border-color: #f4623a; color: #f4623a;" href="/studant/1">Primeiro</a></li>
             <% } %>
             <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
             <% if (i !== 1) { %>
-                <li class="page-item disabled" style=" color: #A0AD67;"><a >...</a></li>
+                <li class="page-item disabled" style=" color: #f4623a;"><a >...</a></li>
             <% } %>
             
             <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
                 <% if (i == current) { %>
-                    <li class="page-item active" style=" border-color: #A0AD67; color: #A0AD67;"><a style="background-color: #E5EFBA; border-color: #A0AD67; color: #A0AD67;" class="page-link"><%= i %></a></li>
+                    <li class="page-item active" style=" border-color: #f4623a; color: #f4623a;"><a style="background-color: whitesmoke; border-color: #f4623a; color: #f4623a;" class="page-link"><%= i %></a></li>
                 <% } else { %>
-                    <li class="page-item" style=" border-color: #A0AD67; color: #A0AD67;" ><a style=" border-color: #A0AD67; color: #A0AD67;" class="page-link" href="/studant/<%= i %>"><%= i %></a></li>
+                    <li class="page-item" style=" border-color: #f4623a; color: #f4623a;" ><a style=" border-color: #f4623a; color: #f4623a;" class="page-link" href="/studant/<%= i %>"><%= i %></a></li>
                 <% } %>
                 <% if (i == Number(current) + 4 && i < pages) { %>
-                    <li class="page-item disabled" style=" border-color: #A0AD67; color: #A0AD67;"><a>...</a></li>
+                    <li class="page-item disabled" style=" border-color: #f4623a; color: #f4623a;"><a>...</a></li>
                 <% } %>
             <% } %>
             <% if (current == pages) { %>
-                <li class="page-item disabled" ><a style=" color: #A0AD67;" class="page-link">Último</a></li>
+                <li class="page-item disabled" ><a style=" color: #f4623a;" class="page-link">Último</a></li>
             <% } else { %>
-                <li style=" color: #A0AD67;"><a style=" border-color: #A0AD67; color: #A0AD67;" class="page-link" href="/studant/<%= pages %>">Último</a></li>
+                <li style=" color: #f4623a;"><a style=" border-color: #f4623a; color: #f4623a;" class="page-link" href="/studant/<%= pages %>">Último</a></li>
             <% } %>
         </ul>
     </nav>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,36 +8,125 @@
     <title>Perfil</title>
     <%- include('../partials/headers'); %>
 </head>
+
 <body>
     <%- include('../partials/navbar'); %>
-    <header class="masthead">
-        <div class="container px-4 px-lg-5 h-100">
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-8 align-self-end">
-    <main>
-        <% dataUser.forEach(function(data){ %>
-        <form action="/edit" enctype="multipart/form-data" method="post">
-        
-        <label for="image">Imagem:</label>
-        <img src="images/<%= data['image'] %>" alt="Imagem do Perfil" style='width:150px;'>
-        <input type="file" name="image" id="">
-        <br>
-        <label for="name">Nome:</label>
-        <input type="text" name="name" placeholder="<%= data['name']%>" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="text" name="email" placeholder="<%= data['email']%>" required>
-        <br>
-        <label for="role">Status:</label>
-        <p><%= data['role']%> <i> *Você não tem permissão para modificar este status*</i></p>
-        <button type="submit">Enviar Modificação</button>
-    </form>
-    <button><a href="/deleteUser">Deletar Perfil</a></button><i>Lembre-se que ao fazer essa ação todas as suas conversas, notas, comentarios e redações serão perdidas</i> <!-- FAZER ESSA ROTA PARA MUDAR SENHA-->
-    <% }) %>
-    </main>
-</div>
-</div>
-</div>
-</header>
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                        <main>
+                            <section class="page-section" id="contact">
+                                <div class="container px-4 px-lg-5">
+                                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                                        <div class="col-lg-8 col-xl-6 text-center">
+                                            <h2 class="mt-0">Editar perfil</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                                        <div class="col-lg-6">
+                                            <% dataUser.forEach(function(data){ %>
+                                                <form id="contactForm" action="/edit" enctype="multipart/form-data"
+                                                    method="post" data-sb-form-api-token="API_TOKEN">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <!-- Photo input-->
+                                                            <img src="images/<%= data['image'] %>"
+                                                                alt="Imagem do Perfil"
+                                                                style='width:200px; border-radius: 10%; border-style: groove;'>
+                                                                <div class="form-floating mb-4"></div>
+                                                                <h5 style="color: #fff">Foto de Perfil:</h5>
+                                                                <input class="form-control" type="file" name="image" id="form-camp" required style="margin-bottom: 25px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <!-- Name input-->
+                                                            <div class="form-floating mb-3">
+                                                                <input name="name" class="form-control" id="name"
+                                                                    type="text" placeholder="<%= data['name']%>"
+                                                                    data-sb-validations="required" />
+                                                                <label for="name"><%= data['name']%></label>
+                                                                <div class="invalid-feedback"
+                                                                    data-sb-feedback="name:required">
+                                                                    Nome é obrigatório.</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <!-- Email address input-->
+                                                            <div class="form-floating mb-3">
+                                                                <input name="email" class="form-control" id="email"
+                                                                    type="email" placeholder="<%= data['email']%>"
+                                                                    data-sb-validations="required,email" />
+                                                                <label for="email"><%= data['email']%></label>
+                                                                <div class="invalid-feedback"
+                                                                    data-sb-feedback="email:required">
+                                                                    Um email é necessário.</div>
+                                                                <div class="invalid-feedback"
+                                                                    data-sb-feedback="email:email">
+                                                                    Email invalido.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5>Sua função é <%= data['role']%>
+                                                            </h5> <i style="color:white">*Você não tem permissão para modificar este    
+                                                                status*</i>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Submit success message-->
+                                                    <!---->
+                                                    <!-- This is what your users will see when the form-->
+                                                    <!-- has successfully submitted-->
+                                                    <div class="d-none" id="submitSuccessMessage">
+                                                        <div class="text-center mb-3">
+                                                            <div class="fw-bolder">Enviado com sucesso!</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Submit error message-->
+                                                    <!---->
+                                                    <!-- This is what your users will see when there is-->
+                                                    <!-- an error submitting the form-->
+                                                    <div class="d-none" id="submitErrorMessage">
+                                                        <div class="text-center text-danger mb-3">Erro no envio, tente
+                                                            novamente mais tarde!</div>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <!-- Submit Button-->
+                                                            <div class="d-grid"><button class="btn btn-primary btn-xl"
+                                                                    type="submit" id="form-submit">Atualizar
+                                                                    perfil</button>
+                                                            </div>
+                                                        </div>
+                                                        <% }) %>
+                                                </form>
+                                                <div class="col">
+                                                    <div class="d-grid"><button class="btn btn-primary btn-xl"
+                                                            href="/deleteUser">Deletar Perfil</button></div>
+                                                            <div class="col"><i style="color:white">Lembre-se que
+                                                            ao
+                                                            fazer essa ação todas as suas conversas, notas, comentarios
+                                                            e
+                                                            redações serão perdidas</i>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </section>
+                    </div>
+                </div>
+
+                
+                    </main>
+            </div>
+            </div>
+        </header>
 </body>
+
 </html>

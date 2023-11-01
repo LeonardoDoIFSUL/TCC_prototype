@@ -10,53 +10,59 @@
     <%- include('./partials/navbar'); %>
         <header class="masthead">
             <div class="container">
-                <div class="align-items-center justify-content-center text-center">
+                <div class="align-items-center justify-content-center ">
                     <div class=" align-self-baseline">
                         <!-- VOCE PAROU AQUI!!! FALTA MODIFICAR A QUERY "SEARCHONE()" DO "TEXT.JS" PARA DEVOLVER O NOME DO ALUNO E PASSAR O "ID" DA REDAÇÃO -->
                         <main>
-                            <% dataText.forEach(function(data) { %>
-                                <h5 class="card-tittle"><b>Estudante:</b></h5>
-                                <!-- MODIFICAR A QUERY SERCHONE() DO TEXT.JS-->
-                                <p class="card-text"></p>
-
-                                <h5 class="card-tittle"><b>Vestibular:</b></h5>
-                                <p class="card-text">
-                                    <%= data.test %>
-                                </p>
-
-                                <h5 class="card-tittle"><b>Titulo:</b></h5>
-                                <p class="card-text">
-                                    <%= data.title %>
-                                </p>
-
-                                <h5 class="card-tittle"><b>Tema:</b></h5>
-                                <p class="card-text">
-                                    <%= data.assunt %>
-                                </p>
-
-                                <h5 class="card-tittle"><b>Texto:</b></h5>
-                                <p class="card-text">
-                                    <%= data.redation %>
-                                </p>
-
-                                <form enctype="multipart/form-data" action="/comment/<%= data.id %>" method="post">
-
-                                    <label for="score">Nota:</label>
-                                    <input type="number" name="score" id="" required>
-
-                                    <label for="comment">Comentario:</label>
-                                    <textarea id="my-expressjs-tinymce-app"
-                                        name="comment">Escreva aqui seu comentario!</textarea>
-
-                                    <button type="submit"> Enviar Avaliação </button>
-                                </form>
-                                <% }) %>
-                                    <script type="application/javascript" src="/tinymce/tinymce.min.js"></script>
-                                    <script type="application/javascript"
-                                        src="/javascripts/my-tinymce-config.js"></script>
+                            <div class="row align-items-center justify-content-center">
+                                <% dataText.forEach(function(data) { %>
+                                    <!--<h5 class="card-tittle"><b>Estudante:</b></h5>
+                                 MODIFICAR A QUERY SERCHONE() DO TEXT.JS
+                                <p class="card-text"></p>-->
+                                    <div class="col">
+                                        <h3
+                                            style="background-color: whitesmoke; border-radius: 5px; color: black; margin-left: 35px; text-align: center;">
+                                            Vestibular: <%= data.institute %>
+                                        </h3>
+                                    </div>
+                                    <div class="col">
+                                        <h2
+                                            style="background-color: whitesmoke; border-radius: 5px; color: black; margin-right: 35px; text-align: center;">
+                                            Assunto: <%= data.topic %>
+                                        </h2>
+                                        </h2>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col bg-white rounded mx-5 p-5"
+                                    style="overflow-y: scroll; width:900px; height:650px;">
+                                    <%- data.redation %>
+                                </div>
+                            </div>
+                            <form enctype="multipart/form-data" action="/comment/<%= data.id %>" method="post">
+                                <div class="row">
+                                    <textarea id="my-expressjs-tinymce-app" name="comment">Escreva aqui seu comentario!</textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="score">Nota:</label>
+                                        <input type="number" name="score" id="" required>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-primary btn-xl mb-3" type="submit" id="form-submit">Enviar Avaliação</button>
+                                    </div>
+                                    <div class="col">
+                                        <a class="btn btn-primary btn-xl mb-3" href="/podium">Voltar</a>
+                                    </div>
+                                </div>
+                    
+                    </form>
+                    <% }) %>
+                        <script type="application/javascript" src="/tinymce/tinymce.min.js"></script>
+                        <script type="application/javascript" src="/javascripts/my-tinymce-config.js"></script>
                         </main>
-                    </div>
                 </div>
+            </div>
             </div>
         </header>
 </body>
